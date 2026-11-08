@@ -32,4 +32,13 @@ function addUser(user, callback) {
   );
 }
 
-module.exports = { getUsers, addUser };
+function deleteUser(userID, callback) {
+  connection.execute(
+    'DELETE FROM users WHERE userID = ?',
+    [userID],
+    function (err, results, fields) {
+      callback(results);
+    });
+  }
+
+module.exports = { getUsers, addUser, deleteUser };

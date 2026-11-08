@@ -24,6 +24,21 @@ app.post("/users", function (req, res) {
     });
 });
 
+app.get("/addUser", function (req, res) {
+    res.render("addUser");
+});
+
+app.get("/manageUsers", function (req, res) {
+    res.render("manageUsers");
+});
+
+app.post("/users/:id/delete", function (req, res) {
+    userDB.deleteUser(req.params.id, function (data) {
+        console.log(data);
+        res.redirect("/");
+    });
+});
+
 
 app.listen(PORT, function () {
     console.log(`Listening on Port: ${PORT}`);
